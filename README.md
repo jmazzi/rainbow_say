@@ -1,24 +1,15 @@
-# RainbowSay
+# rainbow_say
 
-TODO: Write a gem description
+Say what you want, but with rainbows.
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'rainbow_say'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install rainbow_say
 
 ## Usage
 
-TODO: Write usage instructions here
+```shell
+rainbow_say i love rainbows
+```
 
 ## Contributing
 
