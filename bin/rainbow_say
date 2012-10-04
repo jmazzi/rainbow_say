@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+STDOUT.sync = true
+trap("SIGINT") { exit! }
+
+if !(say = ARGV.join(" ")).empty?
+  loop do
+    STDOUT.print "\r\x1b[#{31+($.+=1)%7}m#{say}"
+    sleep 0.8
+  end
+else
+  puts "Usage: rainbow_say <something witty>"
+end
