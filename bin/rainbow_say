@@ -2,7 +2,13 @@
 STDOUT.sync = true
 trap("SIGINT") { exit! }
 
-if !(say = ARGV.join(" ")).empty?
+say = if ARGV.any?
+  ARGV.join " "
+elsif !(stdin = STDIN.read).empty?
+  stdin.chomp
+end
+
+if say
   loop do
     STDOUT.print "\r\x1b[#{31+($.+=1)%7}m#{say}"
     STDOUT.print "\e[0m"
