@@ -5,6 +5,7 @@ trap("SIGINT") { exit! }
 if !(say = ARGV.join(" ")).empty?
   loop do
     STDOUT.print "\r\x1b[#{31+($.+=1)%7}m#{say}"
+    STDOUT.print "\e[0m"
     sleep 0.3
   end
 else
