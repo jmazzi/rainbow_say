@@ -2,18 +2,15 @@
 STDOUT.sync = true
 trap("SIGINT") { exit! }
 
-say = if ARGV.any?
-  ARGV.join " "
-elsif !(stdin = STDIN.read).empty?
-  stdin.chomp
+def say_it(say)
+  STDOUT.print "\r\x1b[#{31+($.+=1)%7}m#{say}"
+  STDOUT.print "\e[0m"
 end
 
-if say
-  loop do
-    STDOUT.print "\r\x1b[#{31+($.+=1)%7}m#{say}"
-    STDOUT.print "\e[0m"
-    sleep 0.3
-  end
+if ARGV.any?
+  loop { say_it ARGV.join " "; sleep 0.3 }
+elsif !STDIN.tty?
+  STDIN.each { |stream| say_it stream }
 else
   puts "Usage: rainbow_say <something witty>"
 end
